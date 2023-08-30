@@ -11,14 +11,14 @@ import java.util.List;
 public class Storage {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private long id;
 
     //properties
     private String name;
 
-    @OneToMany
-    @Cascade(CascadeType.ALL)
+    @OneToMany (targetEntity = Product.class)
+    //@Cascade(CascadeType.ALL)
     private List<Product> storageContent;
 
 

@@ -20,6 +20,7 @@ public class StorageApp {
         IProductService productService = new ProductService();
         Storage s1 = new Storage("Fruits & vegetables");
 
+        productService.addProduct(p1);
         productService.addProduct(p2);
         productService.addProduct(p3);
         productService.addProduct(p4);
@@ -27,16 +28,16 @@ public class StorageApp {
         StorageService service = new StorageService();
 
         //Create Storage Entity
-        s1.add(p1);
+        s1.add(p1, p2, p3, p4);
         service.addStorage(s1);
 
         //READ PRODUCT
-        productService.getProduct(3);
+        //productService.getProduct(3);
 
         //UPDATE PRODUCT
-        productService.updateProduct(2, "GreenApple");
+        //productService.updateProduct(2, "GreenApple");
 
         //REMOVE PRODUCT
-        productService.deleteProduct(1);
+        //productService.deleteProduct(1);
     }
 }
