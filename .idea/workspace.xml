@@ -5,27 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d0c270e-ca95-42ad-9229-9f466c41706c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspecrionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sql/sql.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/StorageApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/config/EMFProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/model/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/model/Storage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/repository/IProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/repository/IStorageRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/repository/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/repository/StorageRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/service/IProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/service/IStorageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/service/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/service/StorageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/intecbrussel/StorageApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/StorageApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/intecbrussel/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/intecbrussel/model/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/model/Storage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/intecbrussel/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/intecbrussel/repository/StorageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/repository/StorageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/intecbrussel/service/StorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/service/StorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

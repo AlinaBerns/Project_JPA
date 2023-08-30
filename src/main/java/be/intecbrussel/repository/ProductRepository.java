@@ -3,6 +3,8 @@ package be.intecbrussel.repository;
 import be.intecbrussel.config.EMFProvider;
 import be.intecbrussel.model.Product;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.metamodel.Metamodel;
+import org.hibernate.mapping.Set;
 
 public class ProductRepository implements IProductRepository {
     @Override
@@ -22,6 +24,7 @@ public class ProductRepository implements IProductRepository {
         Product dbProduct;
 
         dbProduct = em.find(Product.class, id);
+
         em.getTransaction().commit();
         em.close();
 
@@ -35,6 +38,7 @@ public class ProductRepository implements IProductRepository {
         EntityManager em = EMFProvider.getEMF().createEntityManager();
         em.getTransaction().begin();
         Product productTest = em.find(Product.class, id);
+
         em.merge(productTest);
         productTest.setName(newName);
 

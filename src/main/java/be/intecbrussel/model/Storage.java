@@ -1,11 +1,24 @@
 package be.intecbrussel.model;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Storage {
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private long id;
+
     //properties
     private String name;
+
+    @OneToMany
+    @Cascade(CascadeType.ALL)
     private List<Product> storageContent;
 
 
@@ -31,6 +44,14 @@ public class Storage {
 
     public void setStorageContent(List<Product> storageContent) {
         this.storageContent = storageContent;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 
