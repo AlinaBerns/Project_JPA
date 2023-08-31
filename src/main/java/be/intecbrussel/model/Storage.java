@@ -19,7 +19,7 @@ public class Storage {
     private String name;
 
     @OneToMany (targetEntity = Product.class)
-    //@Cascade(CascadeType.ALL)
+    //@Cascade(CascadeType.PERSIST)
     private List<Product> storageContent;
 
 

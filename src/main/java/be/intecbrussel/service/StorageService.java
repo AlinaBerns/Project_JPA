@@ -9,6 +9,14 @@ public class StorageService implements IStorageService {
     //custom methods
     @Override
     public void addStorage(Storage storage) {
+        for (Product product : storage.getStorageContent()) {
+
+            if(product.getId() == 0) {
+                productService.addProduct(product);
+            } //else {
+                //productService.updateProduct(product.getId(), product.getName()); = VOOR UPDATE
+            //}
+        }
         storageRepository.createStorage(storage);
     }
 

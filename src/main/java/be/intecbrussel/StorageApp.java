@@ -23,7 +23,7 @@ public class StorageApp {
         productService.addProduct(p1);
         productService.addProduct(p2);
         productService.addProduct(p3);
-        productService.addProduct(p4);
+        productService.addProduct(p4); //= DEZE WERKT ALS WE GEEN CASCADE.PERSIST HEBBEN, GEBRUIK NOOIT CASCADE.ALL
 
         StorageService service = new StorageService();
 
@@ -32,11 +32,11 @@ public class StorageApp {
         service.addStorage(s1);
 
         //READ PRODUCT
-        //productService.getProduct(3);
+        productService.getProduct(3);
 
         //UPDATE PRODUCT
-        //productService.updateProduct(2, "GreenApple");
-        //productService.getProduct(2);
+        productService.updateProduct(2, "GreenApple");
+        productService.getProduct(2);
 
         //REMOVE PRODUCT
         //productService.deleteProduct(1);
