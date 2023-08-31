@@ -6,12 +6,13 @@ import org.hibernate.annotations.CascadeType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Storage {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
 
     //properties
@@ -29,7 +30,6 @@ public class Storage {
     }
 
     protected Storage() {
-
     }
 
 
@@ -76,5 +76,18 @@ public class Storage {
                 "name='" + name + '\'' +
                 ", storageContent=" + storageContent +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Storage storage = (Storage) o;
+        return id == storage.id && Objects.equals(name, storage.name) && Objects.equals(storageContent, storage.storageContent);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, storageContent);
     }
 }

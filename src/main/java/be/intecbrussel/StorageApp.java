@@ -51,6 +51,6 @@ public class StorageApp {
         storageService.getStorage(1);
 
         //DELETE STORAGE
-        storageService.deleteStorage(1);
+        //storageService.deleteStorage(1);
     }
 }

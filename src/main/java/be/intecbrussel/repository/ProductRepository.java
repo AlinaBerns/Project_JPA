@@ -39,6 +39,10 @@ public class ProductRepository implements IProductRepository {
         em.getTransaction().begin();
         Product productTest = em.find(Product.class, id);
 
+        // if(!productTest.equals(product)) {
+        //em.getTransaction().rollback();
+        //} else{em.getTransaction.commit} - ALS IK HEB PRODUCT IN MIJN PARAMETERS
+
         em.merge(productTest);
         productTest.setName(newName);
 
@@ -48,10 +52,10 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public void deleteProduct(Product name) {
+    public void deleteProduct(Product product) {
         EntityManager em = EMFProvider.getEMF().createEntityManager();
         em.getTransaction().begin();
-        Product dbProduct = em.find(Product.class, name.getId());
+        Product dbProduct = em.find(Product.class, product.getId());
         em.remove(dbProduct); //OR em.remove(em.merge(product));
         em.getTransaction().commit();
 
