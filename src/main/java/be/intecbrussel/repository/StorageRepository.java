@@ -59,6 +59,5 @@ public class StorageRepository implements IStorageRepository {
 
         em.getTransaction().commit();
         em.close();
-
     }
 }

@@ -20,8 +20,8 @@ public class StorageApp {
         IProductService productService = new ProductService();
         Storage s1 = new Storage("Fruits & vegetables");
 
-        productService.addProduct(p1);
-        productService.addProduct(p2);
+        //productService.addProduct(p1);
+        //productService.addProduct(p2);
         productService.addProduct(p3);
         productService.addProduct(p4); //= DEZE WERKT ALS WE GEEN CASCADE.PERSIST HEBBEN, GEBRUIK NOOIT CASCADE.ALL
 
@@ -51,6 +51,6 @@ public class StorageApp {
         storageService.getStorage(1);
 
         //DELETE STORAGE
-        //storageService.deleteStorage(1);
+        storageService.deleteStorage(1);
     }
 }

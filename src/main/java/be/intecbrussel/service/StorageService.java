@@ -13,9 +13,9 @@ public class StorageService implements IStorageService {
 
             if(product.getId() == 0) {
                 productService.addProduct(product);
-            } //else {
-                //productService.updateProduct(product.getId(), product.getName()); = VOOR UPDATE
-            //}
+            } else {
+                productService.updateProduct(product.getId(), product.getName()); //= VOOR UPDATE
+            }
         }
         storageRepository.createStorage(storage);
     }
