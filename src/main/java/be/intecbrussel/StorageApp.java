@@ -36,8 +36,21 @@ public class StorageApp {
 
         //UPDATE PRODUCT
         //productService.updateProduct(2, "GreenApple");
+        //productService.getProduct(2);
 
         //REMOVE PRODUCT
         //productService.deleteProduct(1);
+
+        StorageService storageService = new StorageService();
+
+        //READ STORAGE
+        storageService.getStorage(1);
+
+        //UPDATE STORAGE
+        storageService.updateStorage(1, "UPDATE_Fruits & vegetables");
+        storageService.getStorage(1);
+
+        //DELETE STORAGE
+        storageService.deleteStorage(1);
     }
 }

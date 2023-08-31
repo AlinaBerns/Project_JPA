@@ -13,17 +13,17 @@ public class StorageService implements IStorageService {
     }
 
     @Override
-    public Storage getStorage(String name) {
-        return null;
+    public Storage getStorage(long id) {
+        return storageRepository.readStorage(id);
     }
 
     @Override
-    public void updateStorage(Storage storage) {
-
+    public void updateStorage(long id, String newName) {
+        storageRepository.updateStorage(id, newName);
     }
 
     @Override
-    public void deleteStorage(String name) {
-
+    public void deleteStorage(long id) {
+        storageRepository.deleteStorage(id);
     }
 }

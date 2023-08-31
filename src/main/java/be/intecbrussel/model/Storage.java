@@ -28,6 +28,10 @@ public class Storage {
         this.storageContent = new ArrayList<>();
     }
 
+    protected Storage() {
+
+    }
+
 
     //getters & setters
     public String getName() {

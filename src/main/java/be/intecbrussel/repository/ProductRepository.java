@@ -20,12 +20,12 @@ public class ProductRepository implements IProductRepository {
     @Override
     public Product readProduct(long id) {
         EntityManager em = EMFProvider.getEMF().createEntityManager();
-        em.getTransaction().begin();
+        //em.getTransaction().begin();
         Product dbProduct;
 
         dbProduct = em.find(Product.class, id);
 
-        em.getTransaction().commit();
+        //em.getTransaction().commit();
         em.close();
 
         System.out.println(dbProduct);
@@ -56,6 +56,5 @@ public class ProductRepository implements IProductRepository {
         em.getTransaction().commit();
 
         em.close();
-
     }
 }

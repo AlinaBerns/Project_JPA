@@ -22,17 +22,43 @@ public class StorageRepository implements IStorageRepository {
     }
 
     @Override
-    public Storage readStorage(Storage name) {
-        return null;
+    public Storage readStorage(long id) {
+        EntityManager entityManager = EMFProvider.getEMF().createEntityManager();
+        //entityManager.getTransaction().begin();
+        Storage storage;
+
+        storage = entityManager.find(Storage.class, id);
+        System.out.println(storage);
+
+        //entityManager.getTransaction().commit();
+        entityManager.close();
+
+        return storage;
     }
 
     @Override
-    public void updateStorage(String name) {
+    public void updateStorage(long id, String newName) {
+        EntityManager em = EMFProvider.getEMF().createEntityManager();
+        em.getTransaction().begin();
+        Storage storage = em.find(Storage.class, id);
 
+        em.merge(storage);
+        storage.setName(newName);
+
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
-    public void deleteStorage(String name) {
+    public void deleteStorage(long id) {
+        EntityManager em = EMFProvider.getEMF().createEntityManager();
+        em.getTransaction().begin();
+        Storage storage = em.find(Storage.class, id);
+
+        em.remove(storage);
+
+        em.getTransaction().commit();
+        em.close();
 
     }
 }
