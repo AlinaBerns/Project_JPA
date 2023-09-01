@@ -25,12 +25,6 @@ public class StorageApp {
         productService.addProduct(p3);
         productService.addProduct(p4); //= DEZE WERKT ALS WE GEEN CASCADE.PERSIST HEBBEN, GEBRUIK NOOIT CASCADE.ALL
 
-        StorageService service = new StorageService();
-
-        //Create Storage Entity
-        s1.add(p1, p2, p3, p4);
-        service.addStorage(s1);
-
         //READ PRODUCT
         productService.getProduct(3);
 
@@ -38,10 +32,14 @@ public class StorageApp {
         p1.setName("RED APPLE");
         productService.updateProduct(p1);
 
-        productService.getProduct(2);
+        productService.getProduct(1);
 
-        //REMOVE PRODUCT
-        //productService.deleteProduct(2);
+
+        StorageService service = new StorageService();
+
+        //Create Storage Entity
+        s1.add(p1, p2, p3, p4);
+        service.addStorage(s1);
 
         StorageService storageService = new StorageService();
 
@@ -53,7 +51,12 @@ public class StorageApp {
         storageService.updateStorage(s1);
         storageService.getStorage(1);
 
+
         //DELETE STORAGE
-        //storageService.deleteStorage(1);
+        storageService.deleteStorage(1);
+
+        //REMOVE PRODUCT
+        //- DEZE METHOD WERKT ENKEL ALS WE HEBBEN DELETE_STORAGE GEBRUIKEN
+        productService.deleteProduct(2);
     }
 }

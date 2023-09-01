@@ -50,12 +50,12 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public void deleteProduct(Product product) {
-        EntityManager em = EMFProvider.getEMF().createEntityManager();
-        em.getTransaction().begin();
-        Product dbProduct = em.find(Product.class, product.getId());
-        em.remove(dbProduct); //OR em.remove(em.merge(product));
-        em.getTransaction().commit();
+        EntityManager em1 = EMFProvider.getEMF().createEntityManager();
+        em1.getTransaction().begin();
+        Product dbProduct = em1.find(Product.class, product.getId());
+        em1.remove(dbProduct); //OR em.remove(em.merge(product));
+        em1.getTransaction().commit();
 
-        em.close();
+        em1.close();
     }
 }
