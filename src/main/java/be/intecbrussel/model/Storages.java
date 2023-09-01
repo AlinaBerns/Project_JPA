@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Storage {
+public class Storages {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -23,12 +23,12 @@ public class Storage {
 
 
     //constructors
-    public Storage(String name) {
+    public Storages(String name) {
         this.name = name;
         this.storageContent = new ArrayList<>();
     }
 
-    protected Storage() {
+    protected Storages() {
     }
 
 
@@ -63,7 +63,7 @@ public class Storage {
         this.storageContent.add(product);
     }
 
-    public void add(Product... products) { // ... = var args, equivalent to an array
+    public void add(Product... products) {
         for (Product product : products) {
             this.add(product);
         }
@@ -71,7 +71,7 @@ public class Storage {
 
     @Override
     public String toString() {
-        return "Storage{" +
+        return "Storages{" +
                 "name='" + name + '\'' +
                 ", storageContent=" + storageContent +
                 '}';
@@ -81,8 +81,8 @@ public class Storage {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Storage storage = (Storage) o;
-        return id == storage.id && Objects.equals(name, storage.name) && Objects.equals(storageContent, storage.storageContent);
+        Storages storages = (Storages) o;
+        return id == storages.id && Objects.equals(name, storages.name) && Objects.equals(storageContent, storages.storageContent);
     }
 
     @Override

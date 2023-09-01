@@ -4,13 +4,13 @@ import be.intecbrussel.model.*;
 
 public interface IStorageRepository {
     //CREATE
-    void createStorage(Storage storage);
+    void createStorage(Storages storages);
 
     //READ
-    Storage readStorage(long id);
+    Storages readStorage(long id);
 
     //UPDATE
-    void updateStorage(Storage storage);
+    void updateStorage(Storages storages);
 
     //DELETE
     void deleteStorage(long id);

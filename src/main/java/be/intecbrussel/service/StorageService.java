@@ -8,8 +8,8 @@ public class StorageService implements IStorageService {
     ProductService productService = new ProductService();
     //custom methods
     @Override
-    public void addStorage(Storage storage) {
-        for (Product product : storage.getStorageContent()) {
+    public void addStorage(Storages storages) {
+        for (Product product : storages.getStorageContent()) {
 
             if(product.getId() == 0) {
                 productService.addProduct(product);
@@ -17,17 +17,17 @@ public class StorageService implements IStorageService {
                 productService.updateProduct(product); //= VOOR UPDATE
             }
         }
-        storageRepository.createStorage(storage);
+        storageRepository.createStorage(storages);
     }
 
     @Override
-    public Storage getStorage(long id) {
+    public Storages getStorage(long id) {
         return storageRepository.readStorage(id);
     }
 
     @Override
-    public void updateStorage(Storage storage) {
-        storageRepository.updateStorage(storage);
+    public void updateStorage(Storages storages) {
+        storageRepository.updateStorage(storages);
     }
 
     @Override

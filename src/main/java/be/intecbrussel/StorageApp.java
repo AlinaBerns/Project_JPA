@@ -1,14 +1,10 @@
 package be.intecbrussel;
 
-import be.intecbrussel.config.EMFProvider;
 import be.intecbrussel.model.*;
-import be.intecbrussel.repository.IProductRepository;
-import be.intecbrussel.repository.ProductRepository;
 import be.intecbrussel.repository.StorageRepository;
 import be.intecbrussel.service.IProductService;
 import be.intecbrussel.service.ProductService;
 import be.intecbrussel.service.StorageService;
-import jakarta.persistence.EntityManager;
 
 public class StorageApp {
     public static void main(String[] args) {
@@ -18,10 +14,10 @@ public class StorageApp {
         Product p4 = new Product("Banana", 4.00, 4.5);
 
         IProductService productService = new ProductService();
-        Storage s1 = new Storage("Fruits & vegetables");
+        Storages s1 = new Storages("Fruits & vegetables");
 
-        //productService.addProduct(p1);
-        //productService.addProduct(p2);
+        productService.addProduct(p1);
+        productService.addProduct(p2);
         productService.addProduct(p3);
         productService.addProduct(p4); //= DEZE WERKT ALS WE GEEN CASCADE.PERSIST HEBBEN, GEBRUIK NOOIT CASCADE.ALL
 
@@ -37,7 +33,7 @@ public class StorageApp {
 
         StorageService service = new StorageService();
 
-        //Create Storage Entity
+        //Create Storages Entity
         s1.add(p1, p2, p3, p4);
         service.addStorage(s1);
 
@@ -57,5 +53,6 @@ public class StorageApp {
         //REMOVE PRODUCT
         //- DEZE METHOD WERKT ENKEL ALS WE HEBBEN DELETE_STORAGE OF UPDATE_STORAGE GEBRUIKEN
         //productService.deleteProduct(2);
+
     }
 }
