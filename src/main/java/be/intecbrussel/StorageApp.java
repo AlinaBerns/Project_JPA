@@ -51,12 +51,11 @@ public class StorageApp {
         storageService.updateStorage(s1);
         storageService.getStorage(1);
 
-
         //DELETE STORAGE
-        storageService.deleteStorage(1);
+        //storageService.deleteStorage(1);
 
         //REMOVE PRODUCT
-        //- DEZE METHOD WERKT ENKEL ALS WE HEBBEN DELETE_STORAGE GEBRUIKEN
-        productService.deleteProduct(2);
+        //- DEZE METHOD WERKT ENKEL ALS WE HEBBEN DELETE_STORAGE OF UPDATE_STORAGE GEBRUIKEN
+        //productService.deleteProduct(2);
     }
 }
