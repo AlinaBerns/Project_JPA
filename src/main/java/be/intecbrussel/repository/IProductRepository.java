@@ -10,7 +10,7 @@ public interface IProductRepository {
     Product readProduct(long id);
 
     //UPDATE
-    void updateProduct(long id, String newName);
+    void updateProduct(Product product);
 
     //DELETE
     void deleteProduct(Product name);

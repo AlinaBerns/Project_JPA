@@ -34,21 +34,18 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public void updateProduct(long id, String newName) {
+    public void updateProduct(Product product) {
         EntityManager em = EMFProvider.getEMF().createEntityManager();
         em.getTransaction().begin();
-        Product productTest = em.find(Product.class, id);
+        Product productTest = em.merge(product);
 
-        // if(!productTest.equals(product)) {
-        //em.getTransaction().rollback();
-        //} else{em.getTransaction.commit} - ALS IK HEB PRODUCT IN MIJN PARAMETERS
+        if(!productTest.equals(product)) {
+            em.getTransaction().rollback();
+        } else{
+            em.getTransaction().commit();
+        }
 
-        em.merge(productTest);
-        productTest.setName(newName);
-
-        em.getTransaction().commit();
         em.close();
-
     }
 
     @Override

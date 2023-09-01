@@ -10,7 +10,7 @@ public interface IStorageRepository {
     Storage readStorage(long id);
 
     //UPDATE
-    void updateStorage(long id, String newName);
+    void updateStorage(Storage storage);
 
     //DELETE
     void deleteStorage(long id);

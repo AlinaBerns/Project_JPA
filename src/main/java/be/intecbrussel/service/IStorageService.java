@@ -10,7 +10,7 @@ public interface IStorageService {
     Storage getStorage(long id); //no Optional<>, in this project we're working with Exceptions.
 
     //UPDATE
-    void updateStorage(long id, String newName);
+    void updateStorage(Storage storage);
 
     //DELETE
     void deleteStorage(long id);

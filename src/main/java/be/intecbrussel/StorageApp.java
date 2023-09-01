@@ -35,11 +35,13 @@ public class StorageApp {
         productService.getProduct(3);
 
         //UPDATE PRODUCT
-        productService.updateProduct(2, "GreenApple");
+        p1.setName("RED APPLE");
+        productService.updateProduct(p1);
+
         productService.getProduct(2);
 
         //REMOVE PRODUCT
-        //productService.deleteProduct(1);
+        //productService.deleteProduct(2);
 
         StorageService storageService = new StorageService();
 
@@ -47,10 +49,11 @@ public class StorageApp {
         storageService.getStorage(1);
 
         //UPDATE STORAGE
-        storageService.updateStorage(1, "UPDATE_Fruits & vegetables");
+        s1.setName("upd_FRUITS & VEGETABLES ");
+        storageService.updateStorage(s1);
         storageService.getStorage(1);
 
         //DELETE STORAGE
-        storageService.deleteStorage(1);
+        //storageService.deleteStorage(1);
     }
 }

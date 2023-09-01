@@ -14,7 +14,7 @@ public class StorageService implements IStorageService {
             if(product.getId() == 0) {
                 productService.addProduct(product);
             } else {
-                productService.updateProduct(product.getId(), product.getName()); //= VOOR UPDATE
+                productService.updateProduct(product); //= VOOR UPDATE
             }
         }
         storageRepository.createStorage(storage);
@@ -26,8 +26,8 @@ public class StorageService implements IStorageService {
     }
 
     @Override
-    public void updateStorage(long id, String newName) {
-        storageRepository.updateStorage(id, newName);
+    public void updateStorage(Storage storage) {
+        storageRepository.updateStorage(storage);
     }
 
     @Override

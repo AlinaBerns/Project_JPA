@@ -10,7 +10,7 @@ public interface IProductService {
     Product getProduct(long id); //no Optional<>, in this project we're working with Exceptions.
 
     //UPDATE
-    void updateProduct(long id, String newName);
+    void updateProduct(Product product);
 
     //DELETE
     void deleteProduct(long id);

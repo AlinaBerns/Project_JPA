@@ -37,15 +37,16 @@ public class StorageRepository implements IStorageRepository {
     }
 
     @Override
-    public void updateStorage(long id, String newName) {
+    public void updateStorage(Storage storage) {
         EntityManager em = EMFProvider.getEMF().createEntityManager();
         em.getTransaction().begin();
-        Storage storage = em.find(Storage.class, id);
+        Storage storage1 = em.merge(storage);
 
-        em.merge(storage);
-        storage.setName(newName);
-
-        em.getTransaction().commit();
+        if(storage1.getId()!=(storage.getId())) {
+            em.getTransaction().rollback();
+        } else {
+            em.getTransaction().commit();
+        }
         em.close();
     }
 
