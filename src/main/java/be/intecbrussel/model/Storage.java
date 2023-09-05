@@ -1,15 +1,15 @@
 package be.intecbrussel.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Storages {
+public class Storage {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -18,17 +18,17 @@ public class Storages {
     //properties
     private String name;
 
-    @OneToMany (targetEntity = Product.class)
+    @OneToMany (fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
     private List<Product> storageContent;
 
 
     //constructors
-    public Storages(String name) {
+    public Storage(String name) {
         this.name = name;
         this.storageContent = new ArrayList<>();
     }
 
-    protected Storages() {
+    protected Storage() {
     }
 
 
@@ -71,7 +71,7 @@ public class Storages {
 
     @Override
     public String toString() {
-        return "Storages{" +
+        return "Storage{" +
                 "name='" + name + '\'' +
                 ", storageContent=" + storageContent +
                 '}';
@@ -81,8 +81,8 @@ public class Storages {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Storages storages = (Storages) o;
-        return id == storages.id && Objects.equals(name, storages.name) && Objects.equals(storageContent, storages.storageContent);
+        Storage storage = (Storage) o;
+        return id == storage.id && Objects.equals(name, storage.name) && Objects.equals(storageContent, storage.storageContent);
     }
 
     @Override

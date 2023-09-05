@@ -1,19 +1,8 @@
 package be.intecbrussel.service;
 
 import be.intecbrussel.model.Product;
+import be.intecbrussel.model.Storage;
 
-public interface IProductService {
-    //CREATE
-    void addProduct(Product product);
+public interface IProductService extends IEntityService<Product, Long>{
 
-    //READ
-    Product getProduct(long id); //no Optional<>, in this project we're working with Exceptions.
-
-    //UPDATE
-    void updateProduct(Product product);
-
-    //DELETE
-    void deleteProduct(long id);
-
-    void deleteProduct(Product product);
 }

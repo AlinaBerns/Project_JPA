@@ -1,42 +1,44 @@
 package be.intecbrussel.service;
 
-import be.intecbrussel.config.EMFProvider;
 import be.intecbrussel.model.Product;
-import be.intecbrussel.repository.IProductRepository;
+import be.intecbrussel.model.Storage;
+import be.intecbrussel.repository.IEntityRepository;
 import be.intecbrussel.repository.ProductRepository;
-import jakarta.persistence.EntityManager;
 
 public class ProductService implements IProductService {
-    //properties
-    private IProductRepository repo = new ProductRepository();
+    private IStorageService storageService;
+    private IEntityRepository<Product> productIEntityRepository = new ProductRepository();
 
+    protected ProductService (StorageService storageService) {
+        this.storageService = storageService;
+    }
 
-    //custom methods
-    @Override
-    public void addProduct(Product product) {
-        repo.createProduct(product);
+    public ProductService() {
+        storageService = new StorageService(this);
     }
 
     @Override
-    public Product getProduct(long id) {
-        return repo.readProduct(id);
+    public void add(Product entity) {
+        productIEntityRepository.create(entity);
     }
 
     @Override
-    public void updateProduct(Product product) {
-        repo.updateProduct(product);
+    public Product get(Long aLong) {
+        return productIEntityRepository.read(Product.class, aLong);
     }
 
     @Override
-    public void deleteProduct(long id) {
-        Product productToDelete = repo.readProduct(id);
-        repo.deleteProduct(productToDelete);
+    public void update(Product entity) {
+        productIEntityRepository.update(entity);
     }
 
     @Override
-    public void deleteProduct(Product product) {
-            if(product.getId()!=0) {
-                repo.deleteProduct(product);
-            }
+    public void delete(Long object) {
+        storageService = new StorageService();
+        Product product1 = productIEntityRepository.read(Product.class, object);
+
+
+        storageService.deleteProductFromStorage(Storage.class, product1);
+        productIEntityRepository.delete(Product.class, object);
     }
 }

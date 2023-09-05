@@ -1,8 +1,8 @@
 package be.intecbrussel;
 
 import be.intecbrussel.model.*;
-import be.intecbrussel.repository.StorageRepository;
 import be.intecbrussel.service.IProductService;
+import be.intecbrussel.service.PersonService;
 import be.intecbrussel.service.ProductService;
 import be.intecbrussel.service.StorageService;
 
@@ -14,45 +14,55 @@ public class StorageApp {
         Product p4 = new Product("Banana", 4.00, 4.5);
 
         IProductService productService = new ProductService();
-        Storages s1 = new Storages("Fruits & vegetables");
+        Storage s1 = new Storage("Fruits & vegetables");
 
-        productService.addProduct(p1);
-        productService.addProduct(p2);
-        productService.addProduct(p3);
-        productService.addProduct(p4); //= DEZE WERKT ALS WE GEEN CASCADE.PERSIST HEBBEN, GEBRUIK NOOIT CASCADE.ALL
+        productService.add(p1);
+        productService.add(p2);
+        productService.add(p3);
+        productService.add(p4); //= DEZE WERKT ALS WE GEEN CASCADE.PERSIST HEBBEN, GEBRUIK NOOIT CASCADE.ALL
 
         //READ PRODUCT
-        productService.getProduct(3);
+        System.out.println(productService.get(1L));
 
         //UPDATE PRODUCT
         p1.setName("RED APPLE");
-        productService.updateProduct(p1);
+        productService.update(p1);
 
-        productService.getProduct(1);
+        System.out.println(productService.get(1L));
 
 
         StorageService service = new StorageService();
 
-        //Create Storages Entity
+        //Create Storage Entity
         s1.add(p1, p2, p3, p4);
-        service.addStorage(s1);
+        service.add(s1);
 
         StorageService storageService = new StorageService();
 
         //READ STORAGE
-        storageService.getStorage(1);
+        System.out.println(storageService.get(1L));
 
         //UPDATE STORAGE
         s1.setName("upd_FRUITS & VEGETABLES ");
-        storageService.updateStorage(s1);
-        storageService.getStorage(1);
+        storageService.update(s1);
+        System.out.println(storageService.get(1L));
 
         //DELETE STORAGE
-        //storageService.deleteStorage(1);
+        //storageService.delete(Storage.class,1);
 
         //REMOVE PRODUCT
-        //- DEZE METHOD WERKT ENKEL ALS WE HEBBEN DELETE_STORAGE OF UPDATE_STORAGE GEBRUIKEN
-        //productService.deleteProduct(2);
+        productService.delete(p1.getId());
 
+        s1.setName("A bit of everything...");
+
+        Person person = new Person("Jean-Bon");
+        person.setFavoriteStorage(s1);
+
+        Person person1 = new Person("Jean-Tille");
+        person1.setFavoriteStorage(s1);
+
+        PersonService personService = new PersonService();
+        personService.add(person);
+        personService.add(person1);
     }
 }

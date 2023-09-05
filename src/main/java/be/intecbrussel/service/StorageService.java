@@ -1,37 +1,59 @@
 package be.intecbrussel.service;
 
 import be.intecbrussel.model.*;
+import be.intecbrussel.repository.EntityRepository;
+import be.intecbrussel.repository.IEntityRepository;
 import be.intecbrussel.repository.StorageRepository;
 
 public class StorageService implements IStorageService {
-    private StorageRepository storageRepository = new StorageRepository();
-    ProductService productService = new ProductService();
-    //custom methods
+    private IEntityService<Product, Long> productService;
+    private StorageRepository storageIEntityRepository = new StorageRepository();
+
+    protected StorageService (ProductService productService) {
+        this.productService = productService;
+    }
+
+    public StorageService () {
+        productService = new ProductService(this);
+    }
+
     @Override
-    public void addStorage(Storages storages) {
-        for (Product product : storages.getStorageContent()) {
+    public void add(Storage storage) {
+        for (Product product : storage.getStorageContent()) {
 
             if(product.getId() == 0) {
-                productService.addProduct(product);
+                productService.add(product);
             } else {
-                productService.updateProduct(product); //= VOOR UPDATE
+                productService.update(product); //= VOOR UPDATE
             }
         }
-        storageRepository.createStorage(storages);
+        storageIEntityRepository.create(storage);
     }
 
     @Override
-    public Storages getStorage(long id) {
-        return storageRepository.readStorage(id);
+    public Storage get(Long aLong) {
+        return storageIEntityRepository.read(Storage.class, aLong);
     }
 
     @Override
-    public void updateStorage(Storages storages) {
-        storageRepository.updateStorage(storages);
+    public void update(Storage storage) {
+        for (Product product: storage.getStorageContent()){
+            if(product.getId() == 0) {
+                productService.add(product);
+            }
+        }
+        storageIEntityRepository.update(storage);
     }
 
     @Override
-    public void deleteStorage(long id) {
-        storageRepository.deleteStorage(id);
+    public void delete(Long object) {
+        storageIEntityRepository.delete(Storage.class, object);
+    }
+
+    @Override
+    public void deleteProductFromStorage(Class<Storage> storageClass, Product product) {
+        Storage dbStorage = storageIEntityRepository.read(storageClass,product.getId());
+        dbStorage.getStorageContent().remove(product);
+        update(dbStorage);
     }
 }
