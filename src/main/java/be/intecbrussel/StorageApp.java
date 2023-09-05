@@ -1,10 +1,7 @@
 package be.intecbrussel;
 
 import be.intecbrussel.model.*;
-import be.intecbrussel.service.IProductService;
-import be.intecbrussel.service.PersonService;
-import be.intecbrussel.service.ProductService;
-import be.intecbrussel.service.StorageService;
+import be.intecbrussel.service.*;
 
 public class StorageApp {
     public static void main(String[] args) {
@@ -55,14 +52,44 @@ public class StorageApp {
 
         s1.setName("A bit of everything...");
 
+
+        //CREATE PERSONS
         Person person = new Person("Jean-Bon");
         person.setFavoriteStorage(s1);
 
         Person person1 = new Person("Jean-Tille");
+
+        //SET FAVORITE STORAGE
         person1.setFavoriteStorage(s1);
 
         PersonService personService = new PersonService();
+
+        //ADD PERSON
         personService.add(person);
         personService.add(person1);
+
+        //UPDATE STORAGE
+        person1.setName("Ella");
+        personService.update(person1);
+
+        //DELETE PERSON
+        personService.delete(1L);
+
+        KeyService keyService = new KeyService();
+        Key key = new Key();
+
+        //ADD KEY
+        keyService.add(key);
+
+        //UPDATE KEY
+        key.setStorage(s1);
+        keyService.update(key);
+
+        //GET KEY
+        keyService.get(1L);
+
+        //DELETE KEY
+        keyService.delete(1L);
+
     }
 }
