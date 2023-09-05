@@ -25,7 +25,7 @@ public class StorageApp {
         p1.setName("RED APPLE");
         productService.update(p1);
 
-        System.out.println(productService.get(1L));
+        System.out.println(productService.get(p1.getId()));
 
 
         StorageService service = new StorageService();
@@ -42,7 +42,7 @@ public class StorageApp {
         //UPDATE STORAGE
         s1.setName("upd_FRUITS & VEGETABLES ");
         storageService.update(s1);
-        System.out.println(storageService.get(1L));
+        System.out.println(storageService.get(s1.getId()));
 
         //DELETE STORAGE
         //storageService.delete(Storage.class,1);
@@ -73,7 +73,7 @@ public class StorageApp {
         personService.update(person1);
 
         //DELETE PERSON
-        personService.delete(1L);
+        personService.delete(person1.getId());
 
         KeyService keyService = new KeyService();
         Key key = new Key();
@@ -86,7 +86,7 @@ public class StorageApp {
         keyService.update(key);
 
         //GET KEY
-        keyService.get(1L);
+        keyService.get(key.getId());
 
         //DELETE KEY
         keyService.delete(1L);
