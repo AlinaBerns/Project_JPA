@@ -2,8 +2,6 @@ package be.intecbrussel.model;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
 public class Person {
     @Id
@@ -11,12 +9,10 @@ public class Person {
     private long id;
     private String name;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.MERGE)
     private Storage favoriteStorage;
 
-    protected Person () {
-
-    }
+    protected Person() {}
 
     public Person(String name) {
         this.name = name;
@@ -30,28 +26,16 @@ public class Person {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Storage getFavoriteStorage() {
         return favoriteStorage;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setFavoriteStorage(Storage favoriteStorage) {
         this.favoriteStorage = favoriteStorage;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Person person)) return false;
-        return getId() == person.getId() && Objects.equals(getName(), person.getName()) && Objects.equals(getFavoriteStorage(), person.getFavoriteStorage());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getFavoriteStorage());
     }
 
     @Override

@@ -1,95 +1,76 @@
 package be.intecbrussel;
 
 import be.intecbrussel.model.*;
-import be.intecbrussel.service.*;
+import be.intecbrussel.service.entities.*;
+import be.intecbrussel.service.implementations.*;
 
 public class StorageApp {
     public static void main(String[] args) {
-        Product p1 = new Product("Apple", 1.00, 1.5);
-        Product p2 = new Product("Potato", 2.00, 2.5);
-        Product p3 = new Product("Tomato", 3.00, 3.5);
-        Product p4 = new Product("Banana", 4.00, 4.5);
 
-        IProductService productService = new ProductService();
-        Storage s1 = new Storage("Fruits & vegetables");
+        Product p1 = new Product("Apple", 1.50, 2.75);
+        Product p2 = new Product("Potato is now a fruit", 0.95, 0.50);
+        Product p3 = new Product("Banana", 3.60, 4.50);
+        Product p4 = new Product("Train", 50, 60);
 
-        productService.add(p1);
-        productService.add(p2);
-        productService.add(p3);
-        productService.add(p4); //= DEZE WERKT ALS WE GEEN CASCADE.PERSIST HEBBEN, GEBRUIK NOOIT CASCADE.ALL
+        Storage s1 = new Storage("Fruits And Trains");
+        s1.add(p1,p2,p3,p4);
 
-        //READ PRODUCT
-        System.out.println(productService.get(1L));
+        Product pp1 = new Product("a",1,1);
+        Product pp2 = new Product("b",1,1);
+        Product pp3 = new Product("c",1,1);
 
-        //UPDATE PRODUCT
-        p1.setName("RED APPLE");
-        productService.update(p1);
+        Storage s2 = new Storage("oops");
+        s2.add(pp1,pp2,pp3);
 
-        System.out.println(productService.get(p1.getId()));
-
-
-        StorageService service = new StorageService();
-
-        //Create Storage Entity
-        s1.add(p1, p2, p3, p4);
-        service.add(s1);
-
-        StorageService storageService = new StorageService();
-
-        //READ STORAGE
-        System.out.println(storageService.get(1L));
-
-        //UPDATE STORAGE
-        s1.setName("upd_FRUITS & VEGETABLES ");
-        storageService.update(s1);
-        System.out.println(storageService.get(s1.getId()));
-
-        //DELETE STORAGE
-        //storageService.delete(Storage.class,1);
-
-        //REMOVE PRODUCT
-        productService.delete(p1.getId());
-
-        s1.setName("A bit of everything...");
-
-
-        //CREATE PERSONS
         Person person = new Person("Jean-Bon");
         person.setFavoriteStorage(s1);
 
-        Person person1 = new Person("Jean-Tille");
-
-        //SET FAVORITE STORAGE
+        Person person1 = new Person("Jean-tille");
         person1.setFavoriteStorage(s1);
 
-        PersonService personService = new PersonService();
+        Person person2 = new Person("Jean-Neymar");
+        person2.setFavoriteStorage(s2);
 
-        //ADD PERSON
-        personService.add(person);
-        personService.add(person1);
-
-        //UPDATE STORAGE
-        person1.setName("Ella");
-        personService.update(person1);
-
-        //DELETE PERSON
-        personService.delete(person1.getId());
-
-        KeyService keyService = new KeyService();
         Key key = new Key();
+        key.setStorage(s2);
 
-        //ADD KEY
-        keyService.add(key);
+        Job job = new Job("Java Developer", "Develop in java");
+        job.getEmployees().add(person2);
 
-        //UPDATE KEY
-        key.setStorage(s1);
-        keyService.update(key);
+        IProductService productService = Service.getProductService();
+        IStorageService storageService = Service.getStorageService();
+        IPersonService personService = Service.getPersonService();
+        IKeyService keyService = Service.getKeyService();
+        IJobService jobService = Service.getJobService();
 
-        //GET KEY
-        keyService.get(key.getId());
+       // keyService.add(key);
 
-        //DELETE KEY
-        keyService.delete(1L);
+        s2.setName("Someone forgot to merge");
+
+        //keyService.update(key);
+
+        personService.add(person2);
+
+        Key dbKey = keyService.get(1L);
+        System.out.println(dbKey);
+
+        Person dbPerson = personService.get(1L);
+        System.out.println(dbPerson);
+
+//        storageService.delete(s2.getId());
+        jobService.add(job);
+
+        job.setJobTitle("C# developer");
+        job.setJobDescription("Develop in C#");
+
+        jobService.update(job);
+
+//        jobService.delete(1L);
+
+        Job dbJob = jobService.get(1L);
+        System.out.println(dbJob);
+
 
     }
+
 }

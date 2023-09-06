@@ -3,52 +3,46 @@ package be.intecbrussel.repository;
 import be.intecbrussel.config.EMFProvider;
 import jakarta.persistence.EntityManager;
 
-public class EntityRepository <E> implements IEntityRepository <E>{
+public class EntityRepository<E> implements IEntityRepository<E> {
     @Override
     public void create(E entity) {
+        EntityManager em = EMFProvider.getEMF().createEntityManager();
 
-        EntityManager entityManager = EMFProvider.getEMF().createEntityManager();
+        em.getTransaction().begin();
+        em.persist(entity);
+        em.getTransaction().commit();
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(entity);
-        entityManager.getTransaction().commit();
-
-        entityManager.close();
-
+        em.close();
     }
 
     @Override
     public E read(Class<E> returnClass, Object id) {
-
-        EntityManager entityManager = EMFProvider.getEMF().createEntityManager();
-        E dbEntity = entityManager.find(returnClass, id);
-        entityManager.close();
-
+        EntityManager em = EMFProvider.getEMF().createEntityManager();
+        E dbEntity = em.find(returnClass, id);
+        em.close();
         return dbEntity;
     }
 
     @Override
     public void update(E entity) {
-        EntityManager entityManager = EMFProvider.getEMF().createEntityManager();
+        EntityManager em = EMFProvider.getEMF().createEntityManager();
 
-        entityManager.getTransaction().begin();
-        entityManager.merge(entity);
-        entityManager.getTransaction().commit();
+        em.getTransaction().begin();
+        em.merge(entity);
+        em.getTransaction().commit();
 
-        entityManager.close();
-
+        em.close();
     }
 
     @Override
-    public void delete(Class<E> entityClass, Object obj) {
-        EntityManager entityManager = EMFProvider.getEMF().createEntityManager();
+    public void delete(Class<E> entityClass, Object id) {
+        EntityManager em = EMFProvider.getEMF().createEntityManager();
 
-        entityManager.getTransaction().begin();
-        E dbEntity = entityManager.find(entityClass, obj);
-        entityManager.remove(dbEntity);
-        entityManager.getTransaction().commit();
+        em.getTransaction().begin();
+        E dbEntity = em.find(entityClass, id);
+        em.remove(dbEntity);
+        em.getTransaction().commit();
 
-        entityManager.close();
-
+        em.close();
     }
 }
