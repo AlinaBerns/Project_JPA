@@ -3,14 +3,19 @@ import jakarta.persistence.*;
 
 @Entity
 public class PersonJob {
+   /* @EmbeddedId
+    private PersonJobId id;*/
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+
     @ManyToOne(cascade = CascadeType.MERGE)
+    //@MapsId("jobId")
     private Job job;
 
     @ManyToOne(cascade = CascadeType.MERGE)
+    //@MapsId("personId")
     private Person person;
     private double salary;
 
@@ -22,10 +27,6 @@ public class PersonJob {
         this.job = job;
         this.person = person;
         this.salary=salary;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public Job getJob() {
@@ -52,6 +53,10 @@ public class PersonJob {
         this.salary = salary;
     }
 
+    public long getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "PersonJob{" +
@@ -61,4 +66,17 @@ public class PersonJob {
                 ", salary=" + salary +
                 '}';
     }
+
+   /* @Embeddable
+    private static class PersonJobId  {
+        private long jobId;
+        private long personId;
+
+        public PersonJobId(long jobId, long personId){
+            this.jobId = jobId;
+            this.personId = personId;
+        }
+
+        public PersonJobId(){}
+    }*/
 }

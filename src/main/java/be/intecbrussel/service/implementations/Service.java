@@ -24,6 +24,7 @@ public class Service {
         storageService.productService = productService;
 
         jobService.personService = personService;
+
     }
 
     public static KeyService getKeyService() {

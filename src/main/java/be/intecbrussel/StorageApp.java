@@ -57,7 +57,6 @@ public class StorageApp {
         Person dbPerson = personService.get(1L);
         System.out.println(dbPerson);
 
-        //storageService.delete(s2.getId());
         jobService.add(job);
 
         job.setJobTitle("C# developer");
@@ -96,12 +95,17 @@ public class StorageApp {
         personJob.setPerson(person3);
         personJobService.update(personJob);
 
+        //personService.delete(3L);
+
+        //jobService.delete(1L);
         personJobService.delete(1L);
+        //personService.delete(3L); =PROBLEEM
+        //storageService.delete(1L);=PROBLEEM
 
-        personService.delete(3L);
+        //personJobService.delete(1L);=PROBLEEM
 
-        jobService.delete(1L);
-        jobService.delete(1L);
-
+        personJob.setSalary(7000.0);
+        personJobService.update(personJob);
+        personJobService.update(personJob);
     }
 }

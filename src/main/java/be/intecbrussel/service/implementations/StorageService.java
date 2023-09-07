@@ -9,6 +9,7 @@ import be.intecbrussel.service.entities.IProductService;
 import be.intecbrussel.service.entities.IStorageService;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StorageService implements IStorageService {
     private StorageRepository storageRepository = new StorageRepository();
@@ -52,8 +53,8 @@ public class StorageService implements IStorageService {
     @Override
     public void delete(Long id) {
         Storage dbStorage = get(id);
-        keyService.deleteKeyByStorage(dbStorage);
         personService.deleteStorageFromPerson(dbStorage);
+        keyService.deleteKeyByStorage(dbStorage);
 
         storageRepository.delete(Storage.class, id);
     }
@@ -64,4 +65,5 @@ public class StorageService implements IStorageService {
         dbStorage.getStorageContent().remove(product);
         update(dbStorage);
     }
+
 }

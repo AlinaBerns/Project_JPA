@@ -15,8 +15,6 @@ public class PersonJobService implements IPersonJobService {
 
     private IPersonService personService = Service.getPersonService();
     private IJobService jobService = Service.getJobService();
-    private IPersonJobService personJobService = Service.getPersonJobService();
-
     private IPersonJobRepository personJobRepository = new PersonJobRepository();
     @Override
     public void add(PersonJob personJob) {
@@ -41,6 +39,12 @@ public class PersonJobService implements IPersonJobService {
 
     @Override
     public void update(PersonJob personJob) {
+        if (personJobRepository.read(PersonJob.class, personJob.getPerson().getId()) == null) {
+            // && personJob.getPerson().getId()==0
+            //&& personJob.getJob().getId()==0){
+            return;
+        }
+
         if(personJob.getId()!=0 && personJob.getJob().getId()==0){
             jobService.add(personJob.getJob());
 
@@ -65,7 +69,6 @@ public class PersonJobService implements IPersonJobService {
         if(personJobRepository.read(PersonJob.class, personJob.getId()) == null) {
             return;
         }
-
         personJobRepository.delete(PersonJob.class, personJob.getId());
     }
 }
