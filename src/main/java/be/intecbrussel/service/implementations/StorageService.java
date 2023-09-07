@@ -8,6 +8,8 @@ import be.intecbrussel.service.entities.IPersonService;
 import be.intecbrussel.service.entities.IProductService;
 import be.intecbrussel.service.entities.IStorageService;
 
+import java.util.List;
+
 public class StorageService implements IStorageService {
     private StorageRepository storageRepository = new StorageRepository();
 
@@ -52,6 +54,7 @@ public class StorageService implements IStorageService {
         Storage dbStorage = get(id);
         keyService.deleteKeyByStorage(dbStorage);
         personService.deleteStorageFromPerson(dbStorage);
+
         storageRepository.delete(Storage.class, id);
     }
 

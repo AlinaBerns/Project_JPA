@@ -2,6 +2,7 @@ package be.intecbrussel.service.implementations;
 
 import be.intecbrussel.model.Job;
 import be.intecbrussel.model.Person;
+import be.intecbrussel.model.PersonJob;
 import be.intecbrussel.repository.entities.IJobRepository;
 import be.intecbrussel.repository.implementations.JobRepository;
 import be.intecbrussel.service.entities.IJobService;
@@ -19,11 +20,11 @@ public class JobService implements IJobService {
             update(job);
         }
 
-        for (Person employee : job.getEmployees()) {
+        for (PersonJob employee : job.getEmployees()) {
             if (employee.getId() == 0) {
-                personService.add(employee);
+                //personService.add(employee);
             } else {
-                personService.update(employee);
+                //personService.update(employee);
             }
         }
 
@@ -37,9 +38,9 @@ public class JobService implements IJobService {
 
     @Override
     public void update(Job job) {
-        for (Person employee : job.getEmployees()) {
+        for (PersonJob employee : job.getEmployees()) {
             if (employee.getId() == 0) {
-                personService.add(employee);
+                //personService.add(employee);
             }
         }
 

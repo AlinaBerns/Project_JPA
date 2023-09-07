@@ -9,6 +9,7 @@ public class Service {
     private static ProductService productService = new ProductService();
     private static StorageService storageService = new StorageService();
     private static JobService jobService = new JobService();
+    private static PersonJobService personJobService = new PersonJobService();
 
     static {
         keyService.storageService = storageService;
@@ -43,5 +44,9 @@ public class Service {
 
     public static IJobService getJobService() {
         return jobService;
+    }
+
+    public static PersonJobService getPersonJobService() {
+        return personJobService;
     }
 }
