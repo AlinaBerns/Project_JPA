@@ -88,11 +88,20 @@ public class StorageApp {
         PersonJob personJob = new PersonJob(job, person1, 4000.0);
         PersonJobService personJobService = new PersonJobService();
         personJobService.add(personJob);
+        personJobService.add(personJob);
 
         System.out.println(personJobService.get(1L));
 
         Person person3 = new Person("Ron");
         personJob.setPerson(person3);
         personJobService.update(personJob);
+
+        personJobService.delete(1L);
+
+        personService.delete(3L);
+
+        jobService.delete(1L);
+        jobService.delete(1L);
+
     }
 }

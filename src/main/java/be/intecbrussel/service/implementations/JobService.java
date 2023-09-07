@@ -49,6 +49,9 @@ public class JobService implements IJobService {
 
     @Override
     public void delete(Long id) {
+        if(get(id) == null){
+            return;
+        }
         jobRepository.delete(Job.class, id);
     }
 

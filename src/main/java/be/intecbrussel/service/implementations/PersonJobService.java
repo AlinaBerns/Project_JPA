@@ -34,7 +34,6 @@ public class PersonJobService implements IPersonJobService {
         }
     }
 
-
     @Override
     public PersonJob get(Long id) {
         return personJobRepository.read(PersonJob.class, id);
@@ -44,14 +43,29 @@ public class PersonJobService implements IPersonJobService {
     public void update(PersonJob personJob) {
         if(personJob.getId()!=0 && personJob.getJob().getId()==0){
             jobService.add(personJob.getJob());
+
         } else if (personJob.getId()!=0 && personJob.getPerson().getId()==0) {
             personService.add(personJob.getPerson());
         }
+
         personJobRepository.update(personJob);
     }
 
     @Override
     public void delete(Long id) {
 
+        if(id == 0) {
+            return;
+        }
+        deletePersonJob(get(id));
+    }
+
+    private void deletePersonJob(PersonJob personJob) {
+
+        if(personJobRepository.read(PersonJob.class, personJob.getId()) == null) {
+            return;
+        }
+
+        personJobRepository.delete(PersonJob.class, personJob.getId());
     }
 }
